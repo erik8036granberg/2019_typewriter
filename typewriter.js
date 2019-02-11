@@ -30,6 +30,10 @@ function typeLoop() {
   console.log("loop");
 
   let tempText;
+  let currentLetter;
+  let typespace = document.getElementById("typespace");
+  let typekey1 = document.getElementById("typekey1");
+  let randomTime;
 
   // find text content from 0 to counter
   tempText = text.slice(0, counter);
@@ -37,6 +41,17 @@ function typeLoop() {
 
   // display text in div
   document.querySelector("#typewriter").textContent = tempText;
+
+  //   find current letter
+  currentLetter = tempText.slice(-1);
+  console.log(currentLetter);
+
+  // sounds
+  if (currentLetter == " ") {
+    typespace.play();
+  } else {
+    typekey1.play();
+  }
 
   // counter ++
   counter++;
