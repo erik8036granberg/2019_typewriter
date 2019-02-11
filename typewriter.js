@@ -9,11 +9,6 @@ let soundOn = false;
 let currentLetter;
 let randomVal = Math.random();
 
-// sounds
-let typespace = document.querySelector("#typespace");
-let typekey1 = document.querySelector("#typekey1");
-let typekey2 = document.querySelector("#typekey2");
-
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -65,19 +60,45 @@ function typeSounds() {
 
   // sound types
   if (currentLetter == " ") {
-    typespace.play();
+    // typespace.play();
+    let audio = new Audio();
+    audio.src = "typespace.mp3";
+    audio.play();
     console.log("typespace");
   } else {
     // pick random sound
     if (randomVal > 0.5) {
-      typekey1.play();
+      let audio = new Audio();
+      audio.src = "typekey1.mp3";
+      audio.play();
       console.log("typekey1");
     } else {
-      typekey2.play();
+      let audio = new Audio();
+      audio.src = "typekey2.mp3";
+      audio.play();
       console.log("typekey2");
     }
   }
   typeCounter();
+}
+
+// Sound button visuals
+function clickSoundOn() {
+  if (soundOn == false) {
+    soundOn = true;
+    document.querySelector("#sound").classList.remove("off");
+    document.querySelector("#sound").classList.add("on");
+    document.querySelector("#sound span").textContent = "Sound";
+    document.querySelector("#sound .fa-volume-mute").classList.add("hide");
+    document.querySelector("#sound .fa-volume-up").classList.remove("hide");
+  } else {
+    soundOn = false;
+    document.querySelector("#sound").classList.add("off");
+    document.querySelector("#sound").classList.remove("on");
+    document.querySelector("#sound span").textContent = "Click for sound";
+    document.querySelector("#sound .fa-volume-mute").classList.remove("hide");
+    document.querySelector("#sound .fa-volume-up").classList.add("hide");
+  }
 }
 
 function typeCounter() {
@@ -99,26 +120,9 @@ function typeCounter() {
   }
 }
 
+// Random timeout values
 function Random_numbers(numbers) {
   return numbers[Math.floor(Math.random() * numbers.length)];
 }
 
-let numbers = [200, 300, 400, 500, 600];
-
-function clickSoundOn() {
-  if (soundOn == false) {
-    soundOn = true;
-    document.querySelector("#sound").classList.remove("off");
-    document.querySelector("#sound").classList.add("on");
-    document.querySelector("#sound span").textContent = "Sound";
-    document.querySelector("#sound .fa-volume-mute").classList.add("hide");
-    document.querySelector("#sound .fa-volume-up").classList.remove("hide");
-  } else {
-    soundOn = false;
-    document.querySelector("#sound").classList.add("off");
-    document.querySelector("#sound").classList.remove("on");
-    document.querySelector("#sound span").textContent = "Click for sound";
-    document.querySelector("#sound .fa-volume-mute").classList.remove("hide");
-    document.querySelector("#sound .fa-volume-up").classList.add("hide");
-  }
-}
+let numbers = [100, 200, 300, 400, 500];
