@@ -3,6 +3,7 @@
 let text;
 let counter;
 let textLength;
+let soundCheck = false;
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -31,9 +32,10 @@ function typeLoop() {
 
   let tempText;
   let currentLetter;
-  let typespace = document.getElementById("typespace");
-  let typekey1 = document.getElementById("typekey1");
-  let randomTime;
+  let typespace = document.querySelector("#typespace");
+  let typekey1 = document.querySelector("#typekey1");
+  let typekey2 = document.querySelector("#typekey2");
+  let randomVal = Math.random();
 
   // find text content from 0 to counter
   tempText = text.slice(0, counter);
@@ -46,22 +48,41 @@ function typeLoop() {
   currentLetter = tempText.slice(-1);
   console.log(currentLetter);
 
-  // sounds
-  if (currentLetter == " ") {
-    typespace.play();
+  //   check for sound
+  if (soundCheck == false) {
+    typeCounter();
   } else {
-    typekey1.play();
+    typeSounds();
   }
 
-  // counter ++
-  counter++;
-  console.log(counter);
+  function typeSounds() {
+    // sounds
+    if (currentLetter == " ") {
+      typespace.play();
+      console.log("typespace");
+    } else {
+      // pick random sound
+      if (randomVal > 0.5) {
+        typekey1.play();
+        console.log("typekey1");
+      } else {
+        typekey2.play();
+        console.log("typekey2");
+      }
+    }
+  }
 
-  // if text.length < counter .....keep looping
-  if (counter <= textLength) {
-    // delay (400ms)
-    setTimeout(function() {
-      typeLoop();
-    }, 400);
+  function typeCounter() {
+    // counter ++
+    counter++;
+    console.log(counter);
+
+    // if text.length < counter .....keep looping
+    if (counter <= textLength) {
+      // delay (400ms)
+      setTimeout(function () {
+        typeLoop();
+      }, 400);
+    }
   }
 }
