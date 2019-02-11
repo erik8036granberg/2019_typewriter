@@ -86,14 +86,24 @@ function typeCounter() {
   counter++;
   console.log(counter);
 
+
+  let timeOut = Random_numbers(numbers);
+  console.log("delay is: " + timeOut);
+
   // if for text-length
   if (counter <= textLength) {
-    // delay (400ms)
+    // delay
     setTimeout(function () {
       typeLoop();
-    }, 400);
+    }, timeOut);
   }
 }
+
+function Random_numbers(numbers) {
+  return numbers[Math.floor(Math.random() * numbers.length)];
+}
+
+let numbers = [200, 300, 400, 500, 600];
 
 function clickSoundOn() {
   if (soundOn == false) {
