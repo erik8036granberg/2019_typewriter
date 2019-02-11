@@ -1,9 +1,18 @@
 "use strict";
 
+// variables
 let text;
-let counter;
+let tempText;
 let textLength;
-let soundCheck = false;
+let counter;
+let soundOn = false;
+let currentLetter;
+let randomVal = Math.random();
+
+// sounds
+let typespace = document.querySelector("#typespace");
+let typekey1 = document.querySelector("#typekey1");
+let typekey2 = document.querySelector("#typekey2");
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -23,19 +32,15 @@ function init() {
   // check length of text
   textLength = text.length;
 
+  // check length of text
+  document.querySelector("#sound").addEventListener("click", clickSoundOn);
+
   // start loop
   typeLoop();
 }
 
 function typeLoop() {
   console.log("loop");
-
-  let tempText;
-  let currentLetter;
-  let typespace = document.querySelector("#typespace");
-  let typekey1 = document.querySelector("#typekey1");
-  let typekey2 = document.querySelector("#typekey2");
-  let randomVal = Math.random();
 
   // find text content from 0 to counter
   tempText = text.slice(0, counter);
@@ -49,40 +54,61 @@ function typeLoop() {
   console.log(currentLetter);
 
   //   check for sound
-  if (soundCheck == false) {
-    typeCounter();
-  } else {
+  if (soundOn == true) {
     typeSounds();
+  } else {
+    typeCounter();
   }
+}
 
-  function typeSounds() {
-    // sounds
-    if (currentLetter == " ") {
-      typespace.play();
-      console.log("typespace");
+function typeSounds() {
+
+  // sound types
+  if (currentLetter == " ") {
+    typespace.play();
+    console.log("typespace");
+  } else {
+    // pick random sound
+    if (randomVal > 0.5) {
+      typekey1.play();
+      console.log("typekey1");
     } else {
-      // pick random sound
-      if (randomVal > 0.5) {
-        typekey1.play();
-        console.log("typekey1");
-      } else {
-        typekey2.play();
-        console.log("typekey2");
-      }
+      typekey2.play();
+      console.log("typekey2");
     }
   }
+  typeCounter();
+}
 
-  function typeCounter() {
-    // counter ++
-    counter++;
-    console.log(counter);
+function typeCounter() {
 
-    // if text.length < counter .....keep looping
-    if (counter <= textLength) {
-      // delay (400ms)
-      setTimeout(function () {
-        typeLoop();
-      }, 400);
-    }
+  // counter ++
+  counter++;
+  console.log(counter);
+
+  // if for text-length
+  if (counter <= textLength) {
+    // delay (400ms)
+    setTimeout(function () {
+      typeLoop();
+    }, 400);
+  }
+}
+
+function clickSoundOn() {
+  if (soundOn == false) {
+    soundOn = true;
+    document.querySelector("#sound").classList.remove("off");
+    document.querySelector("#sound").classList.add("on");
+    document.querySelector("#sound span").textContent = "Sound";
+    document.querySelector("#sound .fa-volume-mute").classList.add("hide");
+    document.querySelector("#sound .fa-volume-up").classList.remove("hide");
+  } else {
+    soundOn = false;
+    document.querySelector("#sound").classList.add("off");
+    document.querySelector("#sound").classList.remove("on");
+    document.querySelector("#sound span").textContent = "Click for sound";
+    document.querySelector("#sound .fa-volume-mute").classList.remove("hide");
+    document.querySelector("#sound .fa-volume-up").classList.add("hide");
   }
 }

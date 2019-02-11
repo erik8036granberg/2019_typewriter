@@ -1,30 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Typewriter</title>
-    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Special+Elite"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
 
     <style>
-        #typewriter {
-            font-family: 'Special Elite', cursive;
-        }
-    </style>
-</head>
+      #typewriter {
+        font-family: "Special Elite", cursive;
+      }
+      #sound {
+        height: 35px;
+        color: #fff;
+        width: auto;
+        border: 0;
+        padding: 10px 15px 10px 10px;
+        border-radius: 10px;
+        transition: 0.5s;
+        outline: none;
+      }
 
-<body>
+      #sound:hover {
+        transform: scale(0.95);
+      }
+
+      .on {
+        background-color: green;
+      }
+
+      .off {
+        background-color: darkred;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      #sound i {
+        position: relative;
+        top: 3px;
+        font-size: 20px;
+        padding: 0 3px 0 0;
+        line-height: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="sound" class="off">
+      <i class="fas fa-volume-mute"></i>
+      <i class="fas fa-volume-up hide"></i>
+      <span>Click for sound</span>
+    </button>
+
     <h1 id="typewriter">This text is written one character at a time</h1>
 
     <div id="sounds">
-        <audio id="typekey1" src="typekey1.mp3"></audio>
-        <audio id="typekey2" src="typekey2.mp3"></audio>
-        <audio id="typespace" src="typespace.mp3"></audio>
+      <audio id="typekey1" src="typekey1.mp3"></audio>
+      <audio id="typekey2" src="typekey2.mp3"></audio>
+      <audio id="typespace" src="typespace.mp3"></audio>
     </div>
 
     <script src="typewriter.js"></script>
-</body>
-
+  </body>
 </html>
