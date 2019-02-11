@@ -34,6 +34,8 @@ function init() {
   typeLoop();
 }
 
+// - - - - - - - Loop start - - - - - - - 
+
 function typeLoop() {
   console.log("loop");
 
@@ -55,6 +57,8 @@ function typeLoop() {
     typeCounter();
   }
 }
+
+// - - - - - - - sounds - - - - - - - 
 
 function typeSounds() {
 
@@ -100,6 +104,8 @@ function clickSoundOn() {
     document.querySelector("#sound .fa-volume-up").classList.add("hide");
   }
 }
+
+// - - - - - - - counter & timeout/delay - - - - - - - 
 
 function typeCounter() {
 
